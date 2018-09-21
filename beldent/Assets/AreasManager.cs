@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AreasManager : MonoBehaviour {
-
-	public List<float> all_x_positions;
-
+	
 	public Transform container;
+	public SceneObject obstacle;
+	public Lanes lanes;
 	public Area area;
 	public float totalDistance;
 	public float screenSize = 20;
@@ -16,23 +16,15 @@ public class AreasManager : MonoBehaviour {
 			Add ();
 	}
 	public void Add() {
-		Area newArea = Instantiate(area);
-		newArea.transform.SetParent (container);
-		newArea.transform.localPosition = new Vector2 (totalDistance, 0);
-		totalDistance += newArea.length;
-		all_x_positions.Add (totalDistance);
-		CheckToRemove ();
-	}
-	void CheckToRemove()
-	{
-		foreach (float _x in all_x_positions) {
-			if (_x < totalDistance-(screenSize*2)) {
-				all_x_positions.RemoveAt (0);
-				Area area = container.GetComponentInChildren<Area> ();
-				Destroy (area.gameObject);
-				return;
-			}
+		Area newArea = area;
+		foreach (SceneObjectData data in area.GetObjects()) {
+			SceneObject so = Instantiate (obstacle);
+			Vector3 pos = lanes.GetCoordsByLane (data.laneID);
+			pos.x = data.pos.x + totalDistance;
+			so.transform.SetParent (container);
+			so.transform.localPosition = pos;
+			so.Init (data.laneID);
 		}
-				
+		totalDistance += newArea.length;
 	}
 }

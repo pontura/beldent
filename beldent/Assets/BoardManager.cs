@@ -6,7 +6,9 @@ public class BoardManager : MonoBehaviour {
 	public float distance;
 
 	public Scrolleable[] Zone1Objects;
+	public CharactersManager charactersManager;
 	public AreasManager areasManager;
+	public Lanes lanes;
 	public GameCamera cam;
 	public states state;
 	public enum states
@@ -18,10 +20,19 @@ public class BoardManager : MonoBehaviour {
 	}
 	public float realSpeed = 0;
 	public float speed;
+	static BoardManager mInstance = null;
 
-	public void Init()
+	public static BoardManager Instance
 	{
-
+		get
+		{
+			return mInstance;
+		}
+	}
+	void Awake()
+	{
+		if (!mInstance)
+			mInstance = this;
 	}
 	void Update()
 	{
@@ -46,5 +57,6 @@ public class BoardManager : MonoBehaviour {
 		}
 		areasManager.Check (distance);
 		cam.Move (distance);
+		charactersManager.Move (distance);
 	}
 }
