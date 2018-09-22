@@ -747,8 +747,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionMode: 1
-  resolution: {x: 384, y: 216}
-  pixelSize: 5
+  resolution: {x: 320, y: 180}
+  pixelSize: 6
   dither: 0
   opacity: 0
   colormap: {fileID: 11400000, guid: 30a8ec7f3ca3cfd478eff58fb3b47652, type: 2}
