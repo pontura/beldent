@@ -9,14 +9,30 @@ public class FollowersManager : MonoBehaviour {
 	Lanes lanes;
 	float offset = 5;
 
-	void Start () {
+	void Awake () {
 		lanes = GetComponent<Lanes> ();
 		Events.AddFollower += AddFollower;
 		Events.OnCharacterChangeLane += OnCharacterChangeLane;
+		Events.OnGameStart += OnGameStart;
+		Events.OnAvatarCatched += OnAvatarCatched;
 	}
 	void OnDestroy () {
 		Events.AddFollower -= AddFollower;
 		Events.OnCharacterChangeLane -= OnCharacterChangeLane;
+		Events.OnGameStart -= OnGameStart;
+		Events.OnAvatarCatched -= OnAvatarCatched;
+	}
+	void OnAvatarCatched(Character character)
+	{
+		foreach (Enemy e in all) {
+			if (e.characterToFollow == character)
+				e.StopRunning ();
+		}
+	}
+	void OnGameStart()
+	{		
+		foreach (Enemy e in all)
+			e.StartRunning ();
 	}
 	void OnCharacterChangeLane(Character character, int laneID)
 	{
@@ -31,6 +47,7 @@ public class FollowersManager : MonoBehaviour {
 		Enemy newEnemy = Instantiate (enemy);
 		all.Add (newEnemy);
 		newEnemy.laneID = character.laneID;
+		newEnemy.distance = -offset;
 		newEnemy.Init (character, character.laneID);
 	}
 	public void Move(float distance)

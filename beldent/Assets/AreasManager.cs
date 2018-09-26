@@ -33,7 +33,6 @@ public class AreasManager : MonoBehaviour {
 		if (id >= areas.Count - 1)
 			id -= 5;
 		Area newArea = areas[id];
-		print (newArea.name + "    " + newArea.GetObjects().Count);
 		foreach (SceneObjectData data in newArea.GetObjects()) {
 			
 			SceneObject so_to_instantiate = obstacle1;
@@ -56,7 +55,7 @@ public class AreasManager : MonoBehaviour {
 		}
 		totalDistance += newArea.length;
 
-		if (Random.Range (0, 10) > 4)
+		if (Random.Range (0, 10) > 3)
 			id++;
 
 	}

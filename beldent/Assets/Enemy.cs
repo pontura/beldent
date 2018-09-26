@@ -8,7 +8,7 @@ public class Enemy : Obstacle {
 	public int id;
 	public float distance;
 	public Vector3 lanePos;
-	float speedY = 0.1f;
+	float speedY = 0.05f;
 	public Animator anim;
 
 	public states state;
@@ -17,13 +17,14 @@ public class Enemy : Obstacle {
 	{
 		IDLE,
 		PLAYING,
-		CHANGING_LANE
+		CHANGING_LANE,
+		WIN
 	}
 
 	public void Init (Character characterToFollow, int laneID) {
-		state = states.PLAYING;
+		state = states.IDLE;
 		anim.transform.localScale = new Vector3 (1, 1, 1);
-		anim.Play ("enemy_run");
+
 		this.characterToFollow = characterToFollow;
 		this.laneID = laneID;
 		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
@@ -31,9 +32,14 @@ public class Enemy : Obstacle {
 		anim.transform.SetParent (transform);
 		anim.transform.localPosition = Vector3.zero;
 	}
+	public void StartRunning()
+	{
+		state = states.PLAYING;
+		anim.Play ("enemy_run");
+	}
 	void Update()
 	{
-		if (state == states.IDLE)
+		if (state == states.IDLE || state == states.WIN)
 			return;
 		Vector3 pos = transform.localPosition;
 		pos.x = distance;
@@ -58,7 +64,7 @@ public class Enemy : Obstacle {
 		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 		lanePos.y = lanePos.y;
 		lanePos.z = lanePos.z;
-		Invoke ("ForceToLanePosition", 0.12f);
+		Invoke ("ForceToLanePosition", 0.3f);
 	}
 	void ForceToLanePosition()
 	{
@@ -70,5 +76,17 @@ public class Enemy : Obstacle {
 	public void Move(float distance)
 	{
 		this.distance = distance;
+	}
+	public void StopRunning()
+	{
+		if (state == states.WIN)
+			return;
+		state = states.IDLE;
+		anim.Play ("enemy_idle");
+	}
+	public void Win()
+	{
+		state = states.WIN;
+		anim.Play ("enemy_win");
 	}
 }

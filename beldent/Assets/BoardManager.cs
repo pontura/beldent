@@ -22,6 +22,7 @@ public class BoardManager : MonoBehaviour {
 	public float realSpeed = 0;
 	public float speed;
 	static BoardManager mInstance = null;
+	bool lastAvatarReached;
 
 	public static BoardManager Instance
 	{
@@ -38,39 +39,59 @@ public class BoardManager : MonoBehaviour {
 	void Start()
 	{
 		Events.OnGameOver += OnGameOver;
+		Events.OnAvatarCatched += OnAvatarCatched;
 	}
 	void OnDestroy()
 	{
 		Events.OnGameOver -= OnGameOver;
+		Events.OnAvatarCatched -= OnAvatarCatched;
+	}
+	void OnAvatarCatched(Character character)
+	{
+		if(state == states.GAMEOVER)
+		lastAvatarReached = true;
+	}
+	public void Init()
+	{
+		lastAvatarReached = false;
+		state = states.ACTIVE;
+		Events.OnGameStart ();
 	}
 	void OnGameOver()
 	{
 		state = states.GAMEOVER;
+		Invoke ("TimeOut", 4);
+	}
+	void TimeOut()
+	{
+		Data.Instance.LoadLevel ("Summary");
 	}
 	void Update()
 	{
-		if (state == states.INACTIVE || state == states.GAMEOVER)
+		if (state == states.IDLE || lastAvatarReached)
 		{
 			return;
 		}
+
 		if (realSpeed < speed)
 			realSpeed += 0.1f;
-//		else if (realSpeed > speed)
-//			realSpeed -= 0.04f;
+		//		else if (realSpeed > speed)
+		//			realSpeed -= 0.04f;
 
 
-		if (state == states.ACTIVE)
-		{
-			float _speed = realSpeed*Time.smoothDeltaTime;
-			distance += _speed;
+		float _speed = realSpeed*Time.smoothDeltaTime;
+		distance += _speed;
 
-			foreach (Scrolleable scrolleable in Zone1Objects)
-				scrolleable.Move(_speed);
+		followersManager.Move (distance);
 
-		}
+		if (state == states.GAMEOVER)
+			return;
+
+		foreach (Scrolleable scrolleable in Zone1Objects)
+			scrolleable.Move(_speed);
+	
 		areasManager.Check (distance);
 		cam.Move (distance);
 		charactersManager.Move (distance);
-		followersManager.Move (distance);
 	}
 }

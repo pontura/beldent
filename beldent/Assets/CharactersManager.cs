@@ -9,17 +9,22 @@ public class CharactersManager : MonoBehaviour {
 	public Character character_to_instantiate;
 	Lanes lanes;
 
-	void Start () {
+	void Start () {	
 		Events.OnCrash += OnCrash;
+		Events.OnGameStart += OnGameStart;	
 		lanes = GetComponent<Lanes> ();
 		Add (1, 0);
 		Add (2, 3);
 	}
 	void OnDestroy () {
 		Events.OnCrash -= OnCrash;
-
+		Events.OnGameStart -= OnGameStart;
 	}
-
+	void OnGameStart()
+	{		
+		foreach (Character character in all)
+			character.StartRunning ();
+	}
 	Character GetCharacter(int id)
 	{
 		foreach (Character character in all)

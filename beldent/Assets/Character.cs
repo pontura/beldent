@@ -16,7 +16,8 @@ public class Character : MonoBehaviour {
 	public states state;
 	float offset_x;
 	public enum states
-	{
+	{	
+		IDLE,
 		RUN,
 		CHANGING_LANE,
 		CRASH,
@@ -53,7 +54,7 @@ public class Character : MonoBehaviour {
 	}
 	void Update()
 	{
-		if (state == states.DEAD || state == states.CRASH)
+		if (state == states.IDLE || state == states.DEAD || state == states.CRASH)
 			return;
 		
 		Vector3 pos = transform.localPosition;
@@ -76,6 +77,11 @@ public class Character : MonoBehaviour {
 		}
 		transform.localPosition = pos;
 	}
+	public void StartRunning()
+	{
+		print ("StartRunning " + state);
+		state = states.RUN;
+	}
 	public void ChangeLane()
 	{
 		state = states.CHANGING_LANE;
@@ -89,7 +95,8 @@ public class Character : MonoBehaviour {
 	{
 		if (state == states.DEAD || state == states.CRASH)
 			return;
-		state = states.RUN;
+		if(state == states.CHANGING_LANE)
+			state = states.RUN;
 		Vector3 pos = transform.localPosition;
 		pos.y = lanePos.y;
 		pos.z = lanePos.z;
@@ -111,7 +118,7 @@ public class Character : MonoBehaviour {
 	{		
 		if (playerID != id)
 			return;
-		if (state == states.DEAD || state == states.CRASH || state == states.CHANGING_LANE)
+		if (state == states.IDLE || state == states.DEAD || state == states.CRASH || state == states.CHANGING_LANE)
 			return;
 		this.laneID += value;
 		if (laneID < 0) {
@@ -130,7 +137,7 @@ public class Character : MonoBehaviour {
 	}
 	public void Jump()
 	{
-		if (state == states.DEAD || state == states.CRASH)
+		if (state == states.IDLE || state == states.DEAD || state == states.CRASH)
 			return;
 		if (action != actions.RUNNING)
 			return;
@@ -157,7 +164,7 @@ public class Character : MonoBehaviour {
 	}
 	public void Hit()
 	{
-		if (state == states.DEAD || state == states.CRASH)
+		if (state == states.IDLE || state == states.DEAD || state == states.CRASH)
 			return;
 		Crash ();
 	}

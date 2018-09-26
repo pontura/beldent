@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 65932946187715084}
   - component: {fileID: 54068100729643516}
   - component: {fileID: 114405337102557328}
+  - component: {fileID: 114946338018545728}
   m_Layer: 11
   m_Name: enemy
   m_TagString: Untagged
@@ -1412,6 +1413,17 @@ MonoBehaviour:
   lanePos: {x: 0, y: 0, z: 0}
   anim: {fileID: 95547670341183420}
   state: 0
+--- !u!114 &114946338018545728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444599110249346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa1d8f80991a774fb74bf29257bf772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212004834211439528
 SpriteRenderer:
   m_ObjectHideFlags: 1

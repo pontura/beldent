@@ -13,10 +13,16 @@ public class CharacterCollisions : MonoBehaviour {
 	{
 		Obstacle obstacle = other.GetComponent<Obstacle> ();
 		if (obstacle != null) {
-			if (character.anim.transform.localPosition.y > obstacle._height) 
+			if (character.anim.transform.localPosition.y > obstacle._height)
 				character.DoubleJump ();
-			else
+			else {
+				Enemy enemy =  other.GetComponent<Enemy> ();
+				if (enemy) {
+					Events.OnAvatarCatched (character);
+					enemy.Win ();
+				}
 				character.Hit ();
+			}
 		}
 
 	}
