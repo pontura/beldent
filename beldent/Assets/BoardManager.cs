@@ -7,6 +7,7 @@ public class BoardManager : MonoBehaviour {
 
 	public Scrolleable[] Zone1Objects;
 	public CharactersManager charactersManager;
+	public FollowersManager followersManager;
 	public AreasManager areasManager;
 	public Lanes lanes;
 	public GameCamera cam;
@@ -34,6 +35,18 @@ public class BoardManager : MonoBehaviour {
 		if (!mInstance)
 			mInstance = this;
 	}
+	void Start()
+	{
+		Events.OnGameOver += OnGameOver;
+	}
+	void OnDestroy()
+	{
+		Events.OnGameOver -= OnGameOver;
+	}
+	void OnGameOver()
+	{
+		state = states.GAMEOVER;
+	}
 	void Update()
 	{
 		if (state == states.INACTIVE || state == states.GAMEOVER)
@@ -58,5 +71,6 @@ public class BoardManager : MonoBehaviour {
 		areasManager.Check (distance);
 		cam.Move (distance);
 		charactersManager.Move (distance);
+		followersManager.Move (distance);
 	}
 }

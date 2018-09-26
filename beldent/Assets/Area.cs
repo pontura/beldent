@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Area : MonoBehaviour {
 
+	public float difficulty;
 	public float length = 19.2f;
 	public List<SceneObjectData> all;
 

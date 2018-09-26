@@ -9,8 +9,12 @@ public class Character : MonoBehaviour {
 	public float distance;
 	public Vector3 lanePos;
 	float speedY = 0.1f;
-
+	public Animator anim_to_instantiate;
+	[HideInInspector]
+	public Animator anim;
+	CharacterJump characterJump;
 	public states state;
+	float offset_x;
 	public enum states
 	{
 		RUN,
@@ -18,27 +22,47 @@ public class Character : MonoBehaviour {
 		CRASH,
 		DEAD
 	}
-
+	public actions action;
+	public enum actions
+	{
+		RUNNING,
+		JUMPING
+	}
+	void Awake()
+	{
+		characterJump = GetComponent<CharacterJump> ();
+	}
 	void Start()
 	{
-		Events.OnButtonClicked += OnButtonClicked;
 		Events.OnJoystickAxisVertical += OnJoystickAxisVertical;
+		Events.OnButtonClicked += OnButtonClicked;
 	}
 	void OnDestroy()
 	{
-		Events.OnButtonClicked -= OnButtonClicked;
 		Events.OnJoystickAxisVertical -= OnJoystickAxisVertical;
+		Events.OnButtonClicked -= OnButtonClicked;
 	}
 	public void Init (int id, int laneID) {
 		this.id = id;
 		this.laneID = laneID;
 		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 		ForceToLanePosition ();
+		this.anim = Instantiate (anim_to_instantiate);
+		anim.transform.SetParent (transform);
+		anim.transform.localPosition = Vector3.zero;
 	}
 	void Update()
 	{
+		if (state == states.DEAD || state == states.CRASH)
+			return;
+		
 		Vector3 pos = transform.localPosition;
-		pos.x = distance;
+
+		if (Input.GetAxis ("Horizontal1") != 0) {
+			offset_x += Input.GetAxis ("Horizontal1") / 10;
+		}
+
+		pos.x = distance + offset_x;
 		if (state == states.CHANGING_LANE) {			
 			if (pos.y > lanePos.y)
 				pos.y -= speedY;
@@ -59,6 +83,7 @@ public class Character : MonoBehaviour {
 		lanePos.y = lanePos.y;
 		lanePos.z = lanePos.z;
 		Invoke ("ForceToLanePosition", 0.12f);
+		Events.OnCharacterChangeLane (this, laneID);
 	}
 	void ForceToLanePosition()
 	{
@@ -74,7 +99,7 @@ public class Character : MonoBehaviour {
 	{
 		if (playerID != id)
 			return;
-		print ("jump" + id);
+		Jump ();	
 	}
 
 	public void Move(float distance)
@@ -95,6 +120,52 @@ public class Character : MonoBehaviour {
 			laneID = 6;
 		} else
 	 		ChangeLane ();
+	}
+	public void Run()
+	{
+		if (state == states.DEAD || state == states.CRASH)
+			return;
+		action = actions.RUNNING;
+		anim.Play ("avatar_run");
+	}
+	public void Jump()
+	{
+		if (state == states.DEAD || state == states.CRASH)
+			return;
+		if (action != actions.RUNNING)
+			return;
+		action = actions.JUMPING;
+		characterJump.Init ();
+		anim.Play ("avatar_jump");
+	}
+	public void DoubleJump()
+	{
+		if (state == states.DEAD || state == states.CRASH)
+			return;
+		if (action != actions.JUMPING)
+			return;
+		action = actions.JUMPING;
+		characterJump.InitDoubleJump ();
+	}
+	public void JumpEnded()
+	{
+		if (state == states.DEAD || state == states.CRASH)
+			return;
+		if (action != actions.JUMPING)
+			return;
+		Run ();
+	}
+	public void Hit()
+	{
+		if (state == states.DEAD || state == states.CRASH)
+			return;
+		Crash ();
+	}
+	void Crash()
+	{
+		anim.Play ("avatar_lose");
+		state = states.CRASH;
+		Events.OnCrash (id);
 	}
 
 }

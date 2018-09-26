@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Obstacle : SceneObject {
 
-	void Start () {
-		
-	}
+	public float _height;
+
 }
