@@ -6417,7 +6417,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: torax/pierna_der
+    path: torax/pierna_izq/pie_izq
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6427,7 +6427,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: torax/pierna_der
+    path: torax/pierna_izq/pie_izq
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6437,7 +6437,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: torax/pierna_der
+    path: torax/pierna_izq/pie_izq
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6507,7 +6507,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: torax/pierna_izq
+    path: torax/pierna_der
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6517,7 +6517,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: torax/pierna_izq
+    path: torax/pierna_der
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6527,7 +6527,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: torax/pierna_izq
+    path: torax/pierna_der
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6567,7 +6567,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: torax/pierna_izq/pie_izq
+    path: torax/pierna_izq
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6577,7 +6577,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: torax/pierna_izq/pie_izq
+    path: torax/pierna_izq
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6587,7 +6587,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: torax/pierna_izq/pie_izq
+    path: torax/pierna_izq
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
