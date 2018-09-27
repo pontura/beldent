@@ -15,6 +15,7 @@ public class Data : MonoBehaviour
 
     const string PREFAB_PATH = "Data";    
     static Data mInstance = null;
+	public Customizer customizer;
 
     public static Data Instance
     {
@@ -44,7 +45,7 @@ public class Data : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-       
+		customizer = GetComponent<Customizer> ();
         DontDestroyOnLoad(this.gameObject);
     }
 

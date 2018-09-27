@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EnemyCollider : MonoBehaviour {
 
-	// Use this for initialization
+	Enemy enemy;
 	void Start () {
-		
+		enemy = GetComponent<Enemy> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void OnTriggerEnter(Collider other)
+	{
+		Obstacle obstacle = other.GetComponent<Obstacle> ();
+		if (obstacle != null) 
+				enemy.Hit ();
+
 	}
 }

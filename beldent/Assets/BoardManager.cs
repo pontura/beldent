@@ -23,7 +23,7 @@ public class BoardManager : MonoBehaviour {
 	public float speed;
 	static BoardManager mInstance = null;
 	bool lastAvatarReached;
-
+	public float acceleration = 0;
 	public static BoardManager Instance
 	{
 		get
@@ -72,15 +72,13 @@ public class BoardManager : MonoBehaviour {
 		{
 			return;
 		}
+		acceleration += Time.deltaTime * 0.0005f;
 
 		if (realSpeed < speed)
 			realSpeed += 0.1f;
-		//		else if (realSpeed > speed)
-		//			realSpeed -= 0.04f;
 
-
-		float _speed = realSpeed*Time.smoothDeltaTime;
-		distance += _speed;
+		float _speed = (realSpeed*Time.smoothDeltaTime);
+		distance += _speed+acceleration;
 
 		followersManager.Move (distance);
 
@@ -94,4 +92,5 @@ public class BoardManager : MonoBehaviour {
 		cam.Move (distance);
 		charactersManager.Move (distance);
 	}
+
 }

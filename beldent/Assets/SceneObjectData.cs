@@ -10,7 +10,8 @@ public class SceneObjectData : MonoBehaviour {
 	public enum types
 	{
 		CHARACTER,
-		OBSTACLE1
+		OBSTACLE1,
+		GRAB
 	}
 
 }

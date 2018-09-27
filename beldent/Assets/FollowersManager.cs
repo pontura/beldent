@@ -7,7 +7,7 @@ public class FollowersManager : MonoBehaviour {
 	public List<Enemy> all;
 	public Enemy enemy;
 	Lanes lanes;
-	float offset = 5;
+	float offset = 6;
 
 	void Awake () {
 		lanes = GetComponent<Lanes> ();
@@ -48,11 +48,20 @@ public class FollowersManager : MonoBehaviour {
 		all.Add (newEnemy);
 		newEnemy.laneID = character.laneID;
 		newEnemy.distance = -offset;
-		newEnemy.Init (character, character.laneID);
+		newEnemy.Init (Data.Instance.customizer.GetRandomData(), character, character.laneID);
 	}
 	public void Move(float distance)
 	{
-		foreach (Enemy e in all)
-			e.Move (distance-offset);
+		foreach (Enemy e in all) {
+			if (e.state == Enemy.states.HIT) {
+				if (distance > e.transform.localPosition.x + 10) {
+					Vector3 pos = e.transform.localPosition;
+					pos.x = distance - offset;
+					e.transform.localPosition = pos;
+					e.Revive (e.characterToFollow.laneID);
+				}
+			}
+			e.Move (distance - offset, Time.deltaTime * 0.2f);
+		}
 	}
 }

@@ -20,12 +20,20 @@ public class UICountdown : MonoBehaviour {
 	}
 	void Loop()
 	{
+		panel.SetActive (true);
 		field.text = counter.ToString();
 
-		if (counter == 0)
+		if (counter == 0) {
 			Done ();
+			return;
+		}
 		counter--;
-		Invoke ("Loop", 1);
+		Invoke ("Loop2", 0.8f);
+	}
+	void Loop2()
+	{
+		panel.SetActive (false);
+		Invoke ("Loop", 0.1f);
 	}
 	void Done()
 	{

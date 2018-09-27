@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laneID: 0
-  _height: 1.7
+  _height: 1.8
 --- !u!212 &212708703752799568
 SpriteRenderer:
   m_ObjectHideFlags: 1

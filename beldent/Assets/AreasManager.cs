@@ -7,8 +7,11 @@ public class AreasManager : MonoBehaviour {
 
 	public List<Area> areas;
 	public Transform container;
+
 	public SceneObject obstacle1;
 	public SceneObject enemy;
+	public SceneObject grab1;
+
 	public Lanes lanes;
 	public float totalDistance;
 	public float screenSize = 20;
@@ -44,6 +47,9 @@ public class AreasManager : MonoBehaviour {
 			case SceneObjectData.types.OBSTACLE1:
 				so_to_instantiate = obstacle1;
 				break;
+			case SceneObjectData.types.GRAB:
+				so_to_instantiate = grab1;
+				break;
 			}
 
 			SceneObject so = Instantiate (so_to_instantiate);
@@ -51,7 +57,9 @@ public class AreasManager : MonoBehaviour {
 			pos.x = data.pos.x + totalDistance;
 			so.transform.SetParent (container);
 			so.transform.localPosition = pos;
-			so.Init (data.laneID);
+			so.AddToLane (data.laneID);
+			if(so.GetComponent<Enemy>())
+				so.GetComponent<Enemy>().Init (Data.Instance.customizer.GetRandomData(), null, data.laneID);
 		}
 		totalDistance += newArea.length;
 
@@ -61,7 +69,6 @@ public class AreasManager : MonoBehaviour {
 	}
 	public void RandomizeAreaSetsByPriority()
 	{
-		// if (Data.Instance.isArcade) return;
 		areas = Randomize(areas);
 		areas = areas.OrderBy(x => x.difficulty).ToList();
 	}

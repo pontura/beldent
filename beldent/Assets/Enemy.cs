@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Enemy : Obstacle {
 
+	public Animator anim_to_instantiate;
 	public Character characterToFollow;
 	public int id;
 	public float distance;
+
 	public Vector3 lanePos;
 	float speedY = 0.05f;
 	public Animator anim;
+
+	float MaxOffset = 7;
+	float offset;
 
 	public states state;
 
@@ -18,19 +23,42 @@ public class Enemy : Obstacle {
 		IDLE,
 		PLAYING,
 		CHANGING_LANE,
+		HIT,
 		WIN
-	}
+	}	
 
-	public void Init (Character characterToFollow, int laneID) {
+	public void Init (CustomizationData data, Character _characterToFollow, int laneID) {
+
+		this.anim = Instantiate (anim_to_instantiate);
+		anim.transform.localPosition =new Vector3(0,0,0);
+		anim.transform.SetParent (transform);
+
+		anim.GetComponent<AvatarCustomizer> ().Init (data);
 		state = states.IDLE;
 		anim.transform.localScale = new Vector3 (1, 1, 1);
 
-		this.characterToFollow = characterToFollow;
+		this.characterToFollow = _characterToFollow;
+
+		if(characterToFollow == null)
+			anim.transform.localScale = new Vector3 (-1, 1, 1);
+		
+		this.laneID = laneID;
+		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
+		Vector3 pos = transform.localPosition;
+		pos.y = lanePos.y;
+		pos.z = lanePos.z;
+		transform.localPosition = pos;
+		anim.transform.SetParent (transform);
+		anim.transform.localPosition = Vector3.zero;
+
+		anim.Play ("enemy_idle");
+	}
+	public void Revive(int laneID)
+	{
+		StartRunning ();
 		this.laneID = laneID;
 		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 		ForceToLanePosition ();
-		anim.transform.SetParent (transform);
-		anim.transform.localPosition = Vector3.zero;
 	}
 	public void StartRunning()
 	{
@@ -39,10 +67,10 @@ public class Enemy : Obstacle {
 	}
 	void Update()
 	{
-		if (state == states.IDLE || state == states.WIN)
+		if (state == states.HIT || state == states.IDLE || state == states.WIN)
 			return;
 		Vector3 pos = transform.localPosition;
-		pos.x = distance;
+		pos.x = distance + offset;
 		if (state == states.CHANGING_LANE) {			
 			if (pos.y > lanePos.y)
 				pos.y -= speedY;
@@ -58,23 +86,37 @@ public class Enemy : Obstacle {
 	}
 	public IEnumerator ChangeLane(int laneID)
 	{
-		float delay = Vector3.Distance(characterToFollow.transform.localPosition, transform.localPosition)/10;
-		yield return new WaitForSeconds (delay);
-		state = states.CHANGING_LANE;
-		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
-		lanePos.y = lanePos.y;
-		lanePos.z = lanePos.z;
-		Invoke ("ForceToLanePosition", 0.3f);
+		if (state == states.HIT || state == states.IDLE || state == states.WIN)
+			yield return null;
+		if (state != states.HIT ) {
+			float delay = Vector3.Distance (characterToFollow.transform.localPosition, transform.localPosition) / 10;
+			yield return new WaitForSeconds (delay);
+			if (state == states.HIT || state == states.IDLE || state == states.WIN)
+				yield return null;
+			state = states.CHANGING_LANE;
+			lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
+			lanePos.y = lanePos.y;
+			lanePos.z = lanePos.z;
+			Invoke ("ForceToLanePosition", 0.3f);
+		}
+		yield return null;
 	}
 	void ForceToLanePosition()
 	{
+		if (state == states.HIT || state == states.IDLE || state == states.WIN)
+			return;
 		Vector3 pos = transform.localPosition;
 		pos.y = lanePos.y;
 		pos.z = lanePos.z;
 		transform.localPosition = pos;
 	}
-	public void Move(float distance)
+	public void Move(float distance, float offset)
 	{
+		if (state == states.HIT || state == states.IDLE || state == states.WIN)
+			return;
+		if( this.offset<MaxOffset )
+			this.offset += offset;
+		
 		this.distance = distance;
 	}
 	public void StopRunning()
@@ -88,5 +130,16 @@ public class Enemy : Obstacle {
 	{
 		state = states.WIN;
 		anim.Play ("enemy_win");
+		Vector3 pos = anim.transform.localPosition;
+		pos.z -= 2;
+		anim.transform.localPosition = pos;
+	}
+	public void Hit()
+	{
+		if (state == states.HIT)
+			return;
+		state = states.HIT;
+		anim.Play ("enemy_hit");
+		offset = -1;
 	}
 }

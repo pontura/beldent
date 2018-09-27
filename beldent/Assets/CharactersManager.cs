@@ -13,8 +13,8 @@ public class CharactersManager : MonoBehaviour {
 		Events.OnCrash += OnCrash;
 		Events.OnGameStart += OnGameStart;	
 		lanes = GetComponent<Lanes> ();
-		Add (1, 0);
-		Add (2, 3);
+		Add (1, 1);
+		Add (2, 4);
 	}
 	void OnDestroy () {
 		Events.OnCrash -= OnCrash;
@@ -42,7 +42,7 @@ public class CharactersManager : MonoBehaviour {
 	{
 		Character character = Instantiate(character_to_instantiate);
 		character.laneID = laneID;
-		character.Init (avatarID, laneID);
+		character.Init (Data.Instance.customizer.GetRandomData(), avatarID, laneID);
 		all.Add (character);
 		Events.AddFollower (character);
 	}

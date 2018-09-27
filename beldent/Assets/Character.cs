@@ -43,14 +43,20 @@ public class Character : MonoBehaviour {
 		Events.OnJoystickAxisVertical -= OnJoystickAxisVertical;
 		Events.OnButtonClicked -= OnButtonClicked;
 	}
-	public void Init (int id, int laneID) {
+	public void Init (CustomizationData data, int id, int laneID) {
 		this.id = id;
 		this.laneID = laneID;
+
+		this.anim = Instantiate (anim_to_instantiate);
+		anim.GetComponent<AvatarCustomizer> ().Init (data);
+		offset_x  = -3;
+		transform.localPosition = new Vector3(offset_x,0,0);
+		anim.transform.localPosition =new Vector3(offset_x,0,0);
+		anim.transform.SetParent (transform);
+		anim.transform.localScale = Vector3.one;
 		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 		ForceToLanePosition ();
-		this.anim = Instantiate (anim_to_instantiate);
-		anim.transform.SetParent (transform);
-		anim.transform.localPosition = Vector3.zero;
+
 	}
 	void Update()
 	{
@@ -59,8 +65,8 @@ public class Character : MonoBehaviour {
 		
 		Vector3 pos = transform.localPosition;
 
-		if (Input.GetAxis ("Horizontal1") != 0) {
-			offset_x += Input.GetAxis ("Horizontal1") / 10;
+		if (Input.GetAxis ("Horizontal" + id) != 0) {
+			offset_x += Input.GetAxis ("Horizontal" + id) / 10;
 		}
 
 		pos.x = distance + offset_x;
@@ -79,8 +85,9 @@ public class Character : MonoBehaviour {
 	}
 	public void StartRunning()
 	{
-		print ("StartRunning " + state);
 		state = states.RUN;
+		action = actions.RUNNING;
+		anim.Play ("avatar_run");
 	}
 	public void ChangeLane()
 	{
@@ -145,14 +152,14 @@ public class Character : MonoBehaviour {
 		characterJump.Init ();
 		anim.Play ("avatar_jump");
 	}
-	public void DoubleJump()
+	public void DoubleJump(float _height)
 	{
 		if (state == states.DEAD || state == states.CRASH)
 			return;
 		if (action != actions.JUMPING)
 			return;
 		action = actions.JUMPING;
-		characterJump.InitDoubleJump ();
+		characterJump.InitDoubleJump (_height);
 	}
 	public void JumpEnded()
 	{

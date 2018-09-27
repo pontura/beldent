@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1844796485295774}
+  m_IsPrefabAsset: 1
+--- !u!1 &1844796485295774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4613736028456494}
+  - component: {fileID: 114223643654752184}
+  - component: {fileID: 114982114293541814}
+  m_Layer: 0
+  m_Name: Data
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4613736028456494
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844796485295774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 512, y: 420.77002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114223643654752184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844796485295774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4abbddebb33dc4ea332e8df4756a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  build: 0
+  customizer: {fileID: 0}
+  currentLevel: 
+--- !u!114 &114982114293541814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844796485295774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1eaf94cd72acc4b9367e52c683b9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color_pelos:
+  - {r: 0.43921572, g: 0.24313727, b: 0.10980393, a: 1}
+  - {r: 0.9056604, g: 0, b: 0, a: 1}
+  - {r: 0.0007894534, g: 0.6226415, b: 0, a: 1}
+  - {r: 0.036459688, g: 0, b: 0.3773585, a: 1}
+  color_remeras:
+  - {r: 0.9725491, g: 0.8588236, b: 0.20784315, a: 1}
+  - {r: 0.7335128, g: 0.53306335, b: 0.9339623, a: 1}
+  - {r: 0.41117835, g: 0.8301887, b: 0.58464193, a: 1}
+  - {r: 0.8113208, g: 0.4094874, b: 0.5673725, a: 1}
+  color_piel:
+  - {r: 0.9215687, g: 0.69803923, b: 0.45098042, a: 1}
+  - {r: 0.83137256, g: 0.5686275, b: 0.5686275, a: 1}
+  - {r: 0.8490566, g: 0.83818597, b: 0.46858314, a: 1}
+  - {r: 0.8039216, g: 0.8039216, b: 0.8039216, a: 1}
+  color_zapatos:
+  - {r: 0, g: 0.3647059, b: 0.7294118, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.27450982, b: 0, a: 1}
+  color_gorras:
+  - {r: 0.70980394, g: 0, b: 0, a: 1}
+  - {r: 0.9803922, g: 0.86274517, b: 0.20392159, a: 1}
+  - {r: 0, g: 0.24313727, b: 0.3647059, a: 1}
+  - {r: 0.31132078, g: 0.30397832, b: 0.30397832, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+  color_pantalones:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.010679956, g: 0.23175508, b: 0.4528302, a: 1}
+  - {r: 0, g: 0.41568628, b: 0, a: 1}
+  - {r: 0.43921572, g: 0.24313727, b: 0.10980393, a: 1}
+  all:
+  - img_barba_1
+  - "img_ba\xF1o"
+  - img_brazo
+  - img_cabeza
+  - img_cejas_1
+  - img_cejas_2
+  - img_cejas_3
+  - img_cejas_4
+  - img_gorra_1_a
+  - img_gorra_1_b
+  - img_item_frutilla
+  - img_item_menta copy
+  - img_item_menta
+  - img_mano
+  - img_marshall_chico
+  - img_marshall_grande
+  - img_ojos1
+  - img_pantalon_1_a
+  - img_pantalon_1_b
+  - img_pantalon_2_a
+  - img_pantalon_2_b
+  - img_pelos_A_1_arriba
+  - img_pelos_A_2_arriba
+  - img_pelos_B_1_abajo
+  - img_pelos_B_1_arriba
+  - img_pelos_B_2_abajo
+  - img_pelos_B_2_arriba
+  - img_pelos_C_1_abajo
+  - img_pelos_C_1_arriba
+  - img_pierna
+  - img_pollera_1
+  - img_pupilas
+  - img_remera_1_a
+  - img_remera_1_b
+  - img_remera_2_a
+  - img_remera_2_b
+  - img_remera_notint_1
+  - img_remera_notint_2
+  - img_remera_notint_3
+  - img_sombra
+  - img_torax
+  - img_valla
+  - img_zapato1
+  gorras: []
+  remeras: []
+  pelos: []
+  barbas: []

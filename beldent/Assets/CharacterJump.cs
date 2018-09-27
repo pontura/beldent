@@ -40,7 +40,10 @@ public class CharacterJump : MonoBehaviour {
 		character.JumpEnded ();
 	}
 	//float startingDoubleJumpHeight;
-	public void InitDoubleJump(){
+	public void InitDoubleJump(float _height){
+		Vector3 pos = character.anim.transform.localPosition;
+		pos.y = _height;
+		character.anim.transform.localPosition = pos;
 		iTween.Stop (this.gameObject);
 		//startingDoubleJumpHeight = character.anim.gameObject.transform.localPosition.y;
 		iTween.MoveBy(character.anim.gameObject, iTween.Hash(
