@@ -221,42 +221,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f007def8d50ffb4d96efc6f09a19cf6, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &268336504 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1844796485295774, guid: 0f007def8d50ffb4d96efc6f09a19cf6,
-    type: 2}
-  m_PrefabInternal: {fileID: 216330866}
---- !u!114 &268336508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 268336504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ec8437c24d8ed345a48048c29aa332a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1:
-    gorra: 
-    pelo: 
-    barba: 
-    color_pelos: {r: 0, g: 0, b: 0, a: 0}
-    color_remeras: {r: 0, g: 0, b: 0, a: 0}
-    color_piel: {r: 0, g: 0, b: 0, a: 0}
-    color_zapatos: {r: 0, g: 0, b: 0, a: 0}
-    color_gorras: {r: 0, g: 0, b: 0, a: 0}
-    color_pantalones: {r: 0, g: 0, b: 0, a: 0}
-  player2:
-    gorra: 
-    pelo: 
-    barba: 
-    color_pelos: {r: 0, g: 0, b: 0, a: 0}
-    color_remeras: {r: 0, g: 0, b: 0, a: 0}
-    color_piel: {r: 0, g: 0, b: 0, a: 0}
-    color_zapatos: {r: 0, g: 0, b: 0, a: 0}
-    color_gorras: {r: 0, g: 0, b: 0, a: 0}
-    color_pantalones: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &283905785
 Prefab:
   m_ObjectHideFlags: 0
