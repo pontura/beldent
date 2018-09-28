@@ -12,7 +12,6 @@ public class CharacterCollisions : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		Obstacle obstacle = other.GetComponent<Obstacle> ();
-		print (other.name);
 		if (obstacle != null) {
 			Grabbable g = other.GetComponent<Grabbable> ();
 			if (g != null) {
@@ -21,7 +20,7 @@ public class CharacterCollisions : MonoBehaviour {
 				return;
 			} 
 			if (character.anim.transform.localPosition.y > obstacle._height) {
-				character.DoubleJump (obstacle._height);
+				character.DoubleJump (obstacle._height+0.5f);
 			}
 			else {
 				Enemy enemy =  other.GetComponent<Enemy> ();

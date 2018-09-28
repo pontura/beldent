@@ -1187,8 +1187,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1032064990724402}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4192512, y: -0.7980747, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4041261502885528}
@@ -1644,7 +1644,6 @@ MonoBehaviour:
   - {fileID: 212832076512265952}
   remera:
   - {fileID: 212932796417297848}
-  - {fileID: 212358796247030122}
   - {fileID: 212779352728466358}
   - {fileID: 212389331243252414}
   pelos:

@@ -15,7 +15,7 @@ public class Enemy : Obstacle {
 
 	float MaxOffset = 7;
 	float offset;
-
+	float offset_z;
 	public states state;
 
 	public enum states
@@ -26,8 +26,15 @@ public class Enemy : Obstacle {
 		HIT,
 		WIN
 	}	
+	public override void OnPool() 
+	{ 
+		characterToFollow = null;
+		Destroy (anim.gameObject);
+	}
+	public void InitCharacter (CustomizationData data, Character _characterToFollow, int laneID) {
 
-	public void Init (CustomizationData data, Character _characterToFollow, int laneID) {
+		float rand = (float)Random.Range (-14, 14) / 10;
+		offset_z = rand;
 
 		this.anim = Instantiate (anim_to_instantiate);
 		anim.transform.localPosition =new Vector3(0,0,0);
@@ -55,10 +62,13 @@ public class Enemy : Obstacle {
 	}
 	public void Revive(int laneID)
 	{
+		float rand = (float)Random.Range (-20, 20) / 10;
+		offset += rand;
 		StartRunning ();
 		this.laneID = laneID;
 		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 		ForceToLanePosition ();
+		anim.Play ("enemy_run");
 	}
 	public void StartRunning()
 	{
@@ -107,8 +117,9 @@ public class Enemy : Obstacle {
 			return;
 		Vector3 pos = transform.localPosition;
 		pos.y = lanePos.y;
-		pos.z = lanePos.z;
+		pos.z = lanePos.z + offset_z;
 		transform.localPosition = pos;
+		anim.Play ("enemy_run");
 	}
 	public void Move(float distance, float offset)
 	{

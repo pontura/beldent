@@ -48,7 +48,11 @@ public class FollowersManager : MonoBehaviour {
 		all.Add (newEnemy);
 		newEnemy.laneID = character.laneID;
 		newEnemy.distance = -offset;
-		newEnemy.Init (Data.Instance.customizer.GetRandomData(), character, character.laneID);
+		newEnemy.InitCharacter (Data.Instance.customizer.GetRandomData(), character, character.laneID);
+
+		//si se agrega en medio de una corrida:
+		if (BoardManager.Instance.state == BoardManager.states.ACTIVE)
+			newEnemy.Revive (newEnemy.laneID);
 	}
 	public void Move(float distance)
 	{
@@ -61,7 +65,7 @@ public class FollowersManager : MonoBehaviour {
 					e.Revive (e.characterToFollow.laneID);
 				}
 			}
-			e.Move (distance - offset, Time.deltaTime * 0.2f);
+			e.Move (distance - offset, Time.deltaTime * 0.15f);
 		}
 	}
 }

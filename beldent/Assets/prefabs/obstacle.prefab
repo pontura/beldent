@@ -110,8 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfae7469d022901428a7db73b83c4423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   laneID: 0
-  _height: 1.8
+  _height: 1.4
 --- !u!212 &212708703752799568
 SpriteRenderer:
   m_ObjectHideFlags: 1

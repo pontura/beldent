@@ -13,5 +13,5 @@ public static class Events {
 	public static System.Action<int> OnButtonClicked = delegate { };
 	public static System.Action<Character, int> OnScore = delegate { };
 	public static System.Action<int, int> OnJoystickAxisVertical = delegate { };
-
+	public static System.Action<SceneObject> Pool = delegate { };
 }
