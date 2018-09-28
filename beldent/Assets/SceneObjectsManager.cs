@@ -23,14 +23,16 @@ public class SceneObjectsManager : MonoBehaviour {
 	}
 	void LoopToPool()
 	{
-		int i = sceneObjects_inScene.Count;
-
-		while (i > 0) {
-			SceneObject so = sceneObjects_inScene [i-1];
-			if (so.transform.localPosition.x < boardManager.distance-12) {
-				Pool (so);
+		if (BoardManager.Instance.state == BoardManager.states.ACTIVE) 
+		{
+			int i = sceneObjects_inScene.Count;
+			while (i > 0) {
+				SceneObject so = sceneObjects_inScene [i - 1];
+				if (so.transform.localPosition.x < boardManager.distance - 12) {
+					Pool (so);
+				}
+				i--;
 			}
-			i--;
 		}
 		Invoke ("LoopToPool", 2);
 	}
