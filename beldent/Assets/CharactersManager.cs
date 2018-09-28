@@ -13,8 +13,18 @@ public class CharactersManager : MonoBehaviour {
 		Events.OnCrash += OnCrash;
 		Events.OnGameStart += OnGameStart;	
 		lanes = GetComponent<Lanes> ();
-		Add (1, 1);
+
+		Add (1, 2);
 		Add (2, 4);
+
+		AddNewFollowers();
+	}
+	void AddNewFollowers()
+	{
+		foreach (Character character in all) {
+			Events.AddFollower (character);
+		}
+		Invoke ("AddNewFollowers", 15);
 	}
 	void OnDestroy () {
 		Events.OnCrash -= OnCrash;
@@ -44,7 +54,6 @@ public class CharactersManager : MonoBehaviour {
 		character.laneID = laneID;
 		character.Init (Data.Instance.customizer.GetRandomData(), avatarID, laneID);
 		all.Add (character);
-		Events.AddFollower (character);
 	}
 	public void Move(float distance)
 	{

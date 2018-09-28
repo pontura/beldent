@@ -98,7 +98,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114405337102557328
 MonoBehaviour:
@@ -111,8 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6dbca30ee9a7c41bae2d4da9b32b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   laneID: 0
-  _height: 1.5
+  _height: 1.1
   anim_to_instantiate: {fileID: 95596797761515604, guid: 08cd086835382e346ad0096d26809e28,
     type: 2}
   characterToFollow: {fileID: 0}

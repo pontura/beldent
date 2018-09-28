@@ -6,11 +6,10 @@ using System.Linq;
 public class AreasManager : MonoBehaviour {
 
 	public List<Area> areas;
-	public Transform container;
 
-	public SceneObject obstacle1;
-	public SceneObject enemy;
-	public SceneObject grab1;
+	SceneObjectsManager sceneObjectsManager;
+
+
 
 	public Lanes lanes;
 	public float totalDistance;
@@ -19,6 +18,7 @@ public class AreasManager : MonoBehaviour {
 
 	void Awake()
 	{
+		sceneObjectsManager = GetComponent<SceneObjectsManager> ();
 		GameObject[] thisAreaSets = Resources.LoadAll<GameObject>("areas");
 		foreach (GameObject go in thisAreaSets)
 		{
@@ -37,29 +37,7 @@ public class AreasManager : MonoBehaviour {
 			id -= 5;
 		Area newArea = areas[id];
 		foreach (SceneObjectData data in newArea.GetObjects()) {
-			
-			SceneObject so_to_instantiate = obstacle1;
-
-			switch (data.type) {
-			case SceneObjectData.types.CHARACTER:
-				so_to_instantiate = enemy;
-				break;
-			case SceneObjectData.types.OBSTACLE1:
-				so_to_instantiate = obstacle1;
-				break;
-			case SceneObjectData.types.GRAB:
-				so_to_instantiate = grab1;
-				break;
-			}
-
-			SceneObject so = Instantiate (so_to_instantiate);
-			Vector3 pos = lanes.GetCoordsByLane (data.laneID);
-			pos.x = data.pos.x + totalDistance;
-			so.transform.SetParent (container);
-			so.transform.localPosition = pos;
-			so.AddToLane (data.laneID);
-			if(so.GetComponent<Enemy>())
-				so.GetComponent<Enemy>().Init (Data.Instance.customizer.GetRandomData(), null, data.laneID);
+			sceneObjectsManager.Add (data, totalDistance);
 		}
 		totalDistance += newArea.length;
 
@@ -67,6 +45,7 @@ public class AreasManager : MonoBehaviour {
 			id++;
 
 	}
+
 	public void RandomizeAreaSetsByPriority()
 	{
 		areas = Randomize(areas);

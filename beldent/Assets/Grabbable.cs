@@ -6,6 +6,11 @@ public class Grabbable : Obstacle {
 
 	Character character;
 
+	public override void Init()
+	{
+		character = null;
+	}
+
 	public void GotIt(Character character)
 	{
 		Invoke ("Delayed", 0.15f);
@@ -22,6 +27,6 @@ public class Grabbable : Obstacle {
 	void Delayed()
 	{
 		Events.OnScore (character, 10);
-		Destroy (this.gameObject);
+		Events.Pool (this);
 	}
 }
