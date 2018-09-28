@@ -16,6 +16,7 @@ public class Customizer : MonoBehaviour {
 	public List<string> all;
 	public List<string> gorras;
 	public List<string> remeras;
+	public List<string> remerasnotint;
 	public List<string> pelos;
 	public List<string> barbas;
 
@@ -23,7 +24,14 @@ public class Customizer : MonoBehaviour {
 		
 		if (!Reload)
 			return;
-		
+
+		all.Clear ();
+		gorras.Clear ();
+		remeras.Clear ();
+		pelos.Clear ();
+		barbas.Clear ();
+		remerasnotint.Clear ();
+
 		foreach (string name in System.IO.Directory.GetFiles(@"Assets\Resources\clothes", "*.png"))
 		{
 			string[] textSplit = name.Split(@"\"[0]);
@@ -45,6 +53,9 @@ public class Customizer : MonoBehaviour {
 			case "barba":
 				AddToArray( barbas, fileNameArr[2]);
 				break;
+			case "remeranotint":
+				AddToArray( remerasnotint, fileNameArr[2]);
+				break;
 			}
 			all.Add(fileName);
 		}
@@ -52,6 +63,11 @@ public class Customizer : MonoBehaviour {
 	public CustomizationData GetRandomData()
 	{
 		CustomizationData data = new CustomizationData ();
+		if (Random.Range (0, 10) < 5) {
+			data.remeranotint = "";
+		}else{
+			data.remeranotint = GetRandomFromArray(remerasnotint);
+		}
 		if (Random.Range (0, 10) < 5) {
 			data.barba = "";
 		}else{
@@ -70,6 +86,8 @@ public class Customizer : MonoBehaviour {
 		data.color_piel = color_piel[Random.Range (0,color_piel.Length)];
 		data.color_gorras = color_gorras[Random.Range (0,color_gorras.Length)];
 		data.color_pantalones = color_pantalones[Random.Range (0,color_pantalones.Length)];
+
+		data.remera = GetRandomFromArray(remeras);
 		return data;
 	}
 	public void AddToArray(List<string> arr, string value)

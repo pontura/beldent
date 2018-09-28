@@ -9,6 +9,8 @@ public class CustomizationData {
 	public string gorra;
 	public string pelo;
 	public string barba;
+	public string remera;
+	public string remeranotint;
 
 	public Color color_pelos;
 	public Color color_remeras;
