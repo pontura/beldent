@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class Summary : MonoBehaviour {
 
-
+	bool canClick;
 	void Start () {
-		Invoke ("Timeout", 2);
+		Invoke ("Delayed", 1);
+		Events.OnButtonClicked += OnButtonClicked;
 	}
-	void Timeout()
+	void OnDestroy()
 	{
-		Data.Instance.LoadLevel ("Game");
+		Events.OnButtonClicked -= OnButtonClicked;
+	}
+	void Delayed()
+	{
+		canClick = true;
+	}
+	void OnButtonClicked(int a)
+	{
+		if(canClick)
+			Data.Instance.LoadLevel ("Intro");
 	}
 }

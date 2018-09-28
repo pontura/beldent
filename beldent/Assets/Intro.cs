@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Intro : MonoBehaviour {
-
+	
+	bool canClick;
 	void Start () {
 		Invoke ("Delayed", 1);
+		Events.OnButtonClicked += OnButtonClicked;
+	}
+	void OnDestroy()
+	{
+		Events.OnButtonClicked -= OnButtonClicked;
 	}
 	void Delayed()
 	{
-		Data.Instance.LoadLevel ("Game");
+		canClick = true;
+	}
+	void OnButtonClicked(int a)
+	{
+		if(canClick)
+			Data.Instance.LoadLevel ("Game");
 	}
 }
