@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1eaf94cd72acc4b9367e52c683b9d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Reload: 0
   color_pelos:
   - {r: 0.43921572, g: 0.24313727, b: 0.10980393, a: 1}
   - {r: 0.9056604, g: 0, b: 0, a: 1}
@@ -142,7 +143,55 @@ MonoBehaviour:
   - img_torax
   - img_valla
   - img_zapato1
-  gorras: []
-  remeras: []
-  pelos: []
-  barbas: []
+  - img_barba_1
+  - img_brazo
+  - img_cabeza
+  - img_cejas_1
+  - img_cejas_2
+  - img_cejas_3
+  - img_cejas_4
+  - img_gorra_1_a
+  - img_gorra_1_b
+  - img_item_menta copy
+  - img_mano
+  - img_marshall_chico
+  - img_marshall_grande
+  - img_ojos1
+  - img_pantalon_1_a
+  - img_pantalon_1_b
+  - img_pantalon_2_a
+  - img_pantalon_2_b
+  - img_pelos_A_1_arriba
+  - img_pelos_A_2_arriba
+  - img_pelos_B_1_abajo
+  - img_pelos_B_1_arriba
+  - img_pelos_B_2_abajo
+  - img_pelos_B_2_arriba
+  - img_pelos_C_1_abajo
+  - img_pelos_C_1_arriba
+  - img_pierna
+  - img_pollera_1
+  - img_pupilas
+  - img_remera_1_a
+  - img_remera_1_b
+  - img_remera_2_a
+  - img_remera_2_b
+  - img_remera_notint_1
+  - img_remera_notint_2
+  - img_remera_notint_3
+  - img_sombra
+  - img_torax
+  - img_valla
+  - img_zapato1
+  gorras:
+  - 1
+  remeras:
+  - 1
+  - 2
+  - notint
+  pelos:
+  - A
+  - B
+  - C
+  barbas:
+  - 1

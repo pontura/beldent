@@ -36,8 +36,6 @@ public class Data : MonoBehaviour
     }
     void Awake()
     {
-		QualitySettings.vSyncCount = 1;
-
         if (!mInstance)
             mInstance = this;
         else

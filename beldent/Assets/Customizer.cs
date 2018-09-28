@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Customizer : MonoBehaviour {
 
+	public bool Reload;
 	public Color[] color_pelos;
 	public Color[] color_remeras;
 	public Color[] color_piel;
@@ -19,6 +20,10 @@ public class Customizer : MonoBehaviour {
 	public List<string> barbas;
 
 	void Awake () {
+		
+		if (!Reload)
+			return;
+		
 		foreach (string name in System.IO.Directory.GetFiles(@"Assets\Resources\clothes", "*.png"))
 		{
 			string[] textSplit = name.Split(@"\"[0]);
