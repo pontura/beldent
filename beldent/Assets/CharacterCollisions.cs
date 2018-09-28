@@ -19,11 +19,17 @@ public class CharacterCollisions : MonoBehaviour {
 					g.GotIt (character);
 				return;
 			} 
+			Enemy enemy =  other.GetComponent<Enemy> ();
 			if (character.anim.transform.localPosition.y > obstacle._height) {
 				character.DoubleJump (obstacle._height+0.5f);
+				if (enemy != null) {
+					enemy.HittedOnHead ();
+					Events.OnScore (character, 15);
+				} else {
+					Events.OnScore (character, 25);
+				}
 			}
-			else {
-				Enemy enemy =  other.GetComponent<Enemy> ();
+			else {				
 				if (enemy) {
 					Events.OnAvatarCatched (character);
 					if(enemy.characterToFollow == null || enemy.characterToFollow ==character)

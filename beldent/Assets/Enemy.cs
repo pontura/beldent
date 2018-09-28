@@ -24,6 +24,7 @@ public class Enemy : Obstacle {
 		PLAYING,
 		CHANGING_LANE,
 		HIT,
+		HITTED_ON_HEAD,
 		WIN
 	}	
 	public override void OnPool() 
@@ -78,6 +79,8 @@ public class Enemy : Obstacle {
 	void Update()
 	{
 		if (state == states.HIT || state == states.IDLE || state == states.WIN)
+			return;
+		if (characterToFollow == null)
 			return;
 		Vector3 pos = transform.localPosition;
 		pos.x = distance + offset;
@@ -152,5 +155,23 @@ public class Enemy : Obstacle {
 		state = states.HIT;
 		anim.Play ("enemy_hit");
 		offset = -1;
+	}
+
+	public void HittedOnHead()
+	{
+		if (state == states.HITTED_ON_HEAD)
+			return;
+		state = states.HITTED_ON_HEAD;
+		anim.Play ("enemy_hit");
+		Invoke ("ResetHittedOnHead", 0.5f);
+	}
+	void ResetHittedOnHead()
+	{
+		if (state != states.HITTED_ON_HEAD)
+			return;
+		if (characterToFollow != null)
+			ForceToLanePosition ();
+		else
+			anim.Play ("enemy_idle");
 	}
 }
