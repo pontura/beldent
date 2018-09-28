@@ -32,8 +32,10 @@ public class Enemy : Obstacle {
 		characterToFollow = null;
 		Destroy (anim.gameObject);
 	}
-	public void InitCharacter (CustomizationData data, Character _characterToFollow, int laneID) {
+	public CustomizationData customizationData;
+	public void InitCharacter (CustomizationData customizationData, Character _characterToFollow, int laneID) {
 
+		this.customizationData = customizationData;
 		float rand = (float)Random.Range (-14, 14) / 10;
 		offset_z = rand;
 
@@ -41,7 +43,7 @@ public class Enemy : Obstacle {
 		anim.transform.localPosition =new Vector3(0,0,0);
 		anim.transform.SetParent (transform);
 
-		anim.GetComponent<AvatarCustomizer> ().Init (data);
+		anim.GetComponent<AvatarCustomizer> ().Init (customizationData);
 		state = states.IDLE;
 		anim.transform.localScale = new Vector3 (1, 1, 1);
 

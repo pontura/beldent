@@ -32,6 +32,7 @@ public class CharacterCollisions : MonoBehaviour {
 			else {				
 				if (enemy) {
 					Events.OnAvatarCatched (character);
+					Data.Instance.GetComponent<LastCustomizations> ().SaveNewCustomization (enemy.customizationData);
 					if(enemy.characterToFollow == null || enemy.characterToFollow ==character)
 						enemy.Win ();
 				}

@@ -52,7 +52,10 @@ public class CharactersManager : MonoBehaviour {
 	{
 		Character character = Instantiate(character_to_instantiate);
 		character.laneID = laneID;
-		character.Init (Data.Instance.customizer.GetRandomData(), avatarID, laneID);
+		CustomizationData cData = Data.Instance.GetComponent<LastCustomizations> ().player1;
+		if (avatarID == 2)
+			cData = Data.Instance.GetComponent<LastCustomizations> ().player2;
+		character.Init (cData, avatarID, laneID);
 		all.Add (character);
 	}
 	public void Move(float distance)
