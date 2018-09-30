@@ -439,11 +439,41 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1032064990724402, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114724843381335262, guid: 08cd086835382e346ad0096d26809e28,
+        type: 2}
+      propertyPath: pantalon.Array.data[0]
+      value: 
+      objectReference: {fileID: 193874525}
+    - target: {fileID: 114724843381335262, guid: 08cd086835382e346ad0096d26809e28,
+        type: 2}
+      propertyPath: pantalon.Array.data[1]
+      value: 
+      objectReference: {fileID: 193874524}
+    - target: {fileID: 114724843381335262, guid: 08cd086835382e346ad0096d26809e28,
+        type: 2}
+      propertyPath: pantalon.Array.data[2]
+      value: 
+      objectReference: {fileID: 193874523}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08cd086835382e346ad0096d26809e28, type: 2}
   m_IsPrefabAsset: 0
+--- !u!212 &193874523 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212347931928853140, guid: 08cd086835382e346ad0096d26809e28,
+    type: 2}
+  m_PrefabInternal: {fileID: 193874522}
+--- !u!212 &193874524 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212526888095199386, guid: 08cd086835382e346ad0096d26809e28,
+    type: 2}
+  m_PrefabInternal: {fileID: 193874522}
+--- !u!212 &193874525 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212953161289110928, guid: 08cd086835382e346ad0096d26809e28,
+    type: 2}
+  m_PrefabInternal: {fileID: 193874522}
 --- !u!1 &311734500
 GameObject:
   m_ObjectHideFlags: 0
