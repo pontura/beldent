@@ -19,6 +19,7 @@ public class Customizer : MonoBehaviour {
 	public List<string> remerasnotint;
 	public List<string> pelos;
 	public List<string> barbas;
+	public List<string> pantalones;
 
 	void Awake () {
 		
@@ -31,6 +32,7 @@ public class Customizer : MonoBehaviour {
 		pelos.Clear ();
 		barbas.Clear ();
 		remerasnotint.Clear ();
+		pantalones.Clear ();
 
 		foreach (string name in System.IO.Directory.GetFiles(@"Assets\Resources\clothes", "*.png"))
 		{
@@ -55,6 +57,9 @@ public class Customizer : MonoBehaviour {
 				break;
 			case "remeranotint":
 				AddToArray( remerasnotint, fileNameArr[2]);
+				break;
+			case "pantalon":
+				AddToArray( pantalones, fileNameArr[2]);
 				break;
 			}
 			all.Add(fileName);
@@ -88,6 +93,7 @@ public class Customizer : MonoBehaviour {
 		data.color_pantalones = color_pantalones[Random.Range (0,color_pantalones.Length)];
 
 		data.remera = GetRandomFromArray(remeras);
+		data.pantalon = GetRandomFromArray(pantalones);
 		return data;
 	}
 	public void AddToArray(List<string> arr, string value)

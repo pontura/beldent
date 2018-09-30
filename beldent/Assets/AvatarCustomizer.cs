@@ -45,6 +45,11 @@ public class AvatarCustomizer : MonoBehaviour {
 
 		remeranotint.sprite = Resources.Load<Sprite>("clothes/img_remeranotint_" +data.remeranotint);
 
+		pantalon[0].sprite = Resources.Load<Sprite>("clothes/img_pantalon_" +data.pantalon+ "_b");
+		pantalon[1].sprite = Resources.Load<Sprite>("clothes/img_pantalon_" +data.pantalon+ "_a");
+		pantalon[2].sprite = Resources.Load<Sprite>("clothes/img_pantalon_" +data.pantalon+ "_a");
+
+
 
 		Colorize(piel, data.color_piel);
 		Colorize(pelos, data.color_pelos);
