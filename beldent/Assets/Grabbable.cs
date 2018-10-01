@@ -13,6 +13,7 @@ public class Grabbable : Obstacle {
 
 	public void GotIt(Character character)
 	{
+		Events.OnSoundFX ("coin");
 		Invoke ("Delayed", 0.15f);
 		this.character = character;
 	}

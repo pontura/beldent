@@ -91,6 +91,7 @@ public class Character : MonoBehaviour {
 	}
 	public void ChangeLane()
 	{
+		Events.OnSoundFX ("changeLane");
 		state = states.CHANGING_LANE;
 		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 		lanePos.y = lanePos.y;
@@ -148,6 +149,7 @@ public class Character : MonoBehaviour {
 			return;
 		if (action != actions.RUNNING)
 			return;
+		Events.OnSoundFX ("jump");
 		action = actions.JUMPING;
 		characterJump.Init ();
 		anim.Play ("avatar_jump");
@@ -158,6 +160,7 @@ public class Character : MonoBehaviour {
 			return;
 		if (action != actions.JUMPING)
 			return;
+		Events.OnSoundFX ("jump");
 		action = actions.JUMPING;
 		characterJump.InitDoubleJump (_height);
 	}
@@ -177,6 +180,7 @@ public class Character : MonoBehaviour {
 	}
 	void Crash()
 	{
+		Events.OnSoundFX ("crash");
 		anim.Play ("avatar_lose");
 		state = states.CRASH;
 		Events.OnCrash (id);

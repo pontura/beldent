@@ -1621,6 +1621,7 @@ MonoBehaviour:
     remera: 
     remeranotint: 
     pantalon: 
+    pantalonnotint: 
     color_pelos: {r: 0, g: 0, b: 0, a: 0}
     color_remeras: {r: 0, g: 0, b: 0, a: 0}
     color_piel: {r: 0, g: 0, b: 0, a: 0}
@@ -1660,6 +1661,7 @@ MonoBehaviour:
   barbas:
   - {fileID: 212329419344251260}
   remeranotint: {fileID: 212358796247030122}
+  pantalonnotint: {fileID: 212425390605134356}
   peloAsset: {fileID: 1941598335659610}
   gorraAsset: {fileID: 1337517010366250}
 --- !u!212 &212191210788619794

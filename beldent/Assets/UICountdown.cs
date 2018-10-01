@@ -27,6 +27,7 @@ public class UICountdown : MonoBehaviour {
 			Done ();
 			return;
 		}
+		Events.OnSoundFX ("countdown");
 		counter--;
 		Invoke ("Loop2", 0.8f);
 	}

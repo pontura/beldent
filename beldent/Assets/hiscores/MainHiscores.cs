@@ -48,10 +48,18 @@ public class MainHiscores : MonoBehaviour {
             letterActive.ChangeLetter(false);
 		else if (Input.GetKeyUp(KeyCode.DownArrow))
             letterActive.ChangeLetter(true);
+		else if (Input.GetKeyUp(KeyCode.W))
+			letterActive.ChangeLetter(false);
+		else if (Input.GetKeyUp(KeyCode.S))
+			letterActive.ChangeLetter(true);
 		
 		if (Input.GetKeyUp(KeyCode.LeftArrow))
 			SetLetterActive(false);
 		else if (Input.GetKeyUp(KeyCode.RightArrow))
+			SetLetterActive(true, true);
+		else if (Input.GetKeyUp(KeyCode.A))
+			SetLetterActive(false);
+		else if (Input.GetKeyUp(KeyCode.D))
 			SetLetterActive(true, true);
 		
         else if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.Space))

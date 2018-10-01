@@ -9,6 +9,7 @@ public class SceneObjectsManager : MonoBehaviour {
 	BoardManager boardManager;
 	public Lanes lanes;
 	public SceneObject obstacle1;
+	public SceneObject obstacle2;
 	public SceneObject enemy;
 	public SceneObject grab1;
 	public Transform container;
@@ -85,6 +86,9 @@ public class SceneObjectsManager : MonoBehaviour {
 			break;
 		case SceneObjectData.types.OBSTACLE1:
 			so_to_instantiate = obstacle1;
+			break;
+		case SceneObjectData.types.OBSTACLE2:
+			so_to_instantiate = obstacle2;
 			break;
 		case SceneObjectData.types.GRAB:
 			so_to_instantiate = grab1;

@@ -15,6 +15,7 @@ public class AvatarCustomizer : MonoBehaviour {
 	public SpriteRenderer[] pelos;
 	public SpriteRenderer[] barbas;
 	public SpriteRenderer remeranotint;
+	public SpriteRenderer pantalonnotint;
 
 	public GameObject peloAsset;
 	public GameObject gorraAsset;
@@ -44,6 +45,7 @@ public class AvatarCustomizer : MonoBehaviour {
 		remera[2].sprite = Resources.Load<Sprite>("clothes/img_remera_" +data.remera+ "_b");
 
 		remeranotint.sprite = Resources.Load<Sprite>("clothes/img_remeranotint_" +data.remeranotint);
+		pantalonnotint.sprite = Resources.Load<Sprite>("clothes/img_pantalonnotint_" +data.pantalonnotint);
 
 		pantalon[0].sprite = Resources.Load<Sprite>("clothes/img_pantalon_" +data.pantalon+ "_b");
 		pantalon[1].sprite = Resources.Load<Sprite>("clothes/img_pantalon_" +data.pantalon+ "_a");

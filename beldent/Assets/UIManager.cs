@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour {
 
 	static UIManager mInstance = null;
 	public UICountdown uiCoutdown;
+	public GameObject gameOver;
 
 	public static UIManager Instance
 	{
@@ -21,8 +22,17 @@ public class UIManager : MonoBehaviour {
 	}
 	void Start()
 	{
+		Events.OnGameOver += OnGameOver;
 		uiCoutdown.Init ();
-
+		gameOver.SetActive (false);
+	}
+	void OnDestroy()
+	{
+		Events.OnGameOver -= OnGameOver;
+	}
+	void OnGameOver()
+	{
+		gameOver.SetActive (true);
 	}
 
 }

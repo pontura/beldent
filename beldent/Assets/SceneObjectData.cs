@@ -11,7 +11,8 @@ public class SceneObjectData : MonoBehaviour {
 	{
 		CHARACTER,
 		OBSTACLE1,
-		GRAB
+		GRAB,
+		OBSTACLE2
 	}
 
 }

@@ -40,6 +40,7 @@ public class BoardManager : MonoBehaviour {
 	{
 		Events.OnGameOver += OnGameOver;
 		Events.OnAvatarCatched += OnAvatarCatched;
+		Events.OnMusic (0);
 	}
 	void OnDestroy()
 	{
@@ -53,17 +54,20 @@ public class BoardManager : MonoBehaviour {
 	}
 	public void Init()
 	{
+		Events.OnMusic (2);
 		lastAvatarReached = false;
 		state = states.ACTIVE;
 		Events.OnGameStart ();
 	}
 	void OnGameOver()
 	{
+		Events.OnMusic (0);
 		state = states.GAMEOVER;
 		Invoke ("TimeOut", 4);
 	}
 	void TimeOut()
 	{
+		Events.OnMusic (1);
 		if(Data.Instance.score > 100)
 			Data.Instance.LoadLevel ("Hiscores");
 		else

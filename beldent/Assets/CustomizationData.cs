@@ -12,6 +12,7 @@ public class CustomizationData {
 	public string remera;
 	public string remeranotint;
 	public string pantalon;
+	public string pantalonnotint;
 
 	public Color color_pelos;
 	public Color color_remeras;
