@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour {
 	void Start()
 	{
 		uiCoutdown.Init ();
+
 	}
 
 }

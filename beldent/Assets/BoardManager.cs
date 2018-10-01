@@ -64,7 +64,10 @@ public class BoardManager : MonoBehaviour {
 	}
 	void TimeOut()
 	{
-		Data.Instance.LoadLevel ("Summary");
+		if(Data.Instance.score > 100)
+			Data.Instance.LoadLevel ("Hiscores");
+		else
+			Data.Instance.LoadLevel ("Summary");
 	}
 	void Update()
 	{

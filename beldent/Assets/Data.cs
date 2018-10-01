@@ -16,6 +16,7 @@ public class Data : MonoBehaviour
     const string PREFAB_PATH = "Data";    
     static Data mInstance = null;
 	public Customizer customizer;
+	public int score;
 
     public static Data Instance
     {
