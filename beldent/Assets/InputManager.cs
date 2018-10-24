@@ -19,12 +19,16 @@ public class InputManager : MonoBehaviour {
 
 		if (_lastY_p1 != lastY_p1) {
 			lastY_p1 = _lastY_p1;
-			if(_lastY_p1 != 0)
-				Events.OnJoystickAxisVertical (1, (int)_lastY_p1*-1);
+			if (lastY_p1 == 0)
+				Events.OnJoystickAxisVerticalRelease (1);
+			else if(_lastY_p1 != 0)
+					Events.OnJoystickAxisVertical (1, (int)_lastY_p1*-1);
 		}
 
 		if (_lastY_p2 != lastY_p2) {
 			lastY_p2 = _lastY_p2;
+			if (lastY_p1 == 0)
+				Events.OnJoystickAxisVerticalRelease (2);
 			if(_lastY_p2 != 0)
 				Events.OnJoystickAxisVertical (2, (int)_lastY_p2*-1);
 		}

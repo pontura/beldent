@@ -51,7 +51,7 @@ public class CharactersManager : MonoBehaviour {
 	public void Add(int avatarID, int laneID)
 	{
 		Character character = Instantiate(character_to_instantiate);
-		character.laneID = laneID;
+		//character.laneID = laneID;
 		CustomizationData cData = Data.Instance.GetComponent<LastCustomizations> ().player1;
 		if (avatarID == 2)
 			cData = Data.Instance.GetComponent<LastCustomizations> ().player2;

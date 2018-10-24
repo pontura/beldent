@@ -63,14 +63,12 @@ public class Enemy : Obstacle {
 
 		anim.Play ("enemy_idle");
 	}
-	public void Revive(int laneID)
+	public void Revive(Vector3 lanePos)
 	{
 		float rand = (float)Random.Range (-20, 20) / 10;
 		offset += rand;
 		StartRunning ();
-		this.laneID = laneID;
-		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
-		ForceToLanePosition ();
+		this.lanePos = lanePos;
 		anim.Play ("enemy_run");
 	}
 	public void StartRunning()
@@ -95,36 +93,28 @@ public class Enemy : Obstacle {
 			if (pos.z > lanePos.z)
 				pos.z -= speedY;
 			else if (pos.z < lanePos.z)
-				pos.y += speedY;
+				pos.z += speedY;
 		}
 		transform.localPosition = pos;
 	}
-	public IEnumerator ChangeLane(int laneID)
+	public IEnumerator ChangeLane()
 	{
 		if (state == states.HIT || state == states.IDLE || state == states.WIN)
 			yield return null;
 		if (state != states.HIT ) {
+			lanePos = new Vector3 (transform.localPosition.x, characterToFollow.transform.localPosition.y, characterToFollow.transform.localPosition.z);
+			lanePos.y += Random.Range (-.4f, .4f);
+			lanePos.z += Random.Range (-.4f, .4f);
 			float delay = Vector3.Distance (characterToFollow.transform.localPosition, transform.localPosition) / 10;
 			yield return new WaitForSeconds (delay);
 			if (state == states.HIT || state == states.IDLE || state == states.WIN)
 				yield return null;
 			state = states.CHANGING_LANE;
-			lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 			lanePos.y = lanePos.y;
 			lanePos.z = lanePos.z;
-			Invoke ("ForceToLanePosition", 0.3f);
+			anim.Play ("enemy_run");
 		}
 		yield return null;
-	}
-	void ForceToLanePosition()
-	{
-		if (state == states.HIT || state == states.IDLE || state == states.WIN)
-			return;
-		Vector3 pos = transform.localPosition;
-		pos.y = lanePos.y;
-		pos.z = lanePos.z + offset_z;
-		transform.localPosition = pos;
-		anim.Play ("enemy_run");
 	}
 	public void Move(float distance, float offset)
 	{
@@ -147,7 +137,7 @@ public class Enemy : Obstacle {
 		state = states.WIN;
 		anim.Play ("enemy_win");
 		Vector3 pos = anim.transform.localPosition;
-		pos.z -= 2;
+		pos.z -= 0.5f;
 		anim.transform.localPosition = pos;
 	}
 	public void Hit()
@@ -171,8 +161,6 @@ public class Enemy : Obstacle {
 	{
 		if (state != states.HITTED_ON_HEAD)
 			return;
-		if (characterToFollow != null)
-			ForceToLanePosition ();
 		else
 			anim.Play ("enemy_idle");
 	}

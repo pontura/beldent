@@ -5,16 +5,18 @@ using UnityEngine;
 public class Character : MonoBehaviour {
 
 	public int id;
-	public int laneID;
+	//public int laneID;
 	public float distance;
 	public Vector3 lanePos;
-	float speedY = 0.1f;
+	float speedY = 0.07f;
+	float delayToRepositionate  = 0.2f;
 	public Animator anim_to_instantiate;
 	[HideInInspector]
 	public Animator anim;
 	CharacterJump characterJump;
 	public states state;
 	float offset_x;
+	public float offset_z;
 	public enum states
 	{	
 		IDLE,
@@ -35,17 +37,19 @@ public class Character : MonoBehaviour {
 	}
 	void Start()
 	{
-		Events.OnJoystickAxisVertical += OnJoystickAxisVertical;
+		//Events.OnJoystickAxisVertical += OnJoystickAxisVertical;
+		Events.OnJoystickAxisVerticalRelease += OnJoystickAxisVerticalRelease;
 		Events.OnButtonClicked += OnButtonClicked;
 	}
 	void OnDestroy()
 	{
-		Events.OnJoystickAxisVertical -= OnJoystickAxisVertical;
+		//Events.OnJoystickAxisVertical -= OnJoystickAxisVertical;
+		Events.OnJoystickAxisVerticalRelease -= OnJoystickAxisVerticalRelease;
 		Events.OnButtonClicked -= OnButtonClicked;
 	}
 	public void Init (CustomizationData data, int id, int laneID) {
 		this.id = id;
-		this.laneID = laneID;
+		//this.laneID = laneID;
 
 		this.anim = Instantiate (anim_to_instantiate);
 		anim.GetComponent<AvatarCustomizer> ().Init (data);
@@ -65,22 +69,29 @@ public class Character : MonoBehaviour {
 		
 		Vector3 pos = transform.localPosition;
 
+		//if (Input.GetAxis ("Vertical" + id) != 0) 
+			offset_z = Input.GetAxis ("Vertical" + id)/10;
+		
+
+
 		if (Input.GetAxis ("Horizontal" + id) != 0) {
 			offset_x += Input.GetAxis ("Horizontal" + id) / 10;
 		}
 
 		pos.x = distance + offset_x;
-		if (state == states.CHANGING_LANE) {			
-			if (pos.y > lanePos.y)
-				pos.y -= speedY;
-			else if (pos.y < lanePos.y)
-				pos.y += speedY;
-
-			if (pos.z > lanePos.z)
-				pos.z -= speedY;
-			else if (pos.z < lanePos.z)
-				pos.y += speedY;
-		}
+		pos.y +=  offset_z;
+		pos.z +=  offset_z;
+//		if (state == states.CHANGING_LANE) {			
+//			if (pos.y > lanePos.y)
+//				pos.y -= speedY;
+//			else if (pos.y < lanePos.y)
+//				pos.y += speedY;
+//
+//			if (pos.z > lanePos.z)
+//				pos.z -= speedY;
+//			else if (pos.z < lanePos.z)
+//				pos.z += speedY;
+//		}
 		transform.localPosition = pos;
 	}
 	public void StartRunning()
@@ -93,16 +104,21 @@ public class Character : MonoBehaviour {
 	{
 		Events.OnSoundFX ("changeLane");
 		state = states.CHANGING_LANE;
-		lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
+		//lanePos = BoardManager.Instance.lanes.GetCoordsByLane (laneID);
 		lanePos.y = lanePos.y;
 		lanePos.z = lanePos.z;
-		Invoke ("ForceToLanePosition", 0.12f);
-		Events.OnCharacterChangeLane (this, laneID);
+		Invoke ("ForceToLanePosition", delayToRepositionate);
+		Events.OnCharacterChangeLane (this, transform.localPosition);
 	}
 	void ForceToLanePosition()
 	{
 		if (state == states.DEAD || state == states.CRASH)
 			return;
+//		if (preesingVerticalAxis) {
+//			state = states.RUN;
+//			OnJoystickAxisVertical (id, laneValueMove);
+//			return;
+//		}
 		if(state == states.CHANGING_LANE)
 			state = states.RUN;
 		Vector3 pos = transform.localPosition;
@@ -121,20 +137,33 @@ public class Character : MonoBehaviour {
 	{
 		this.distance = distance;
 	}
-
-	void OnJoystickAxisVertical(int playerID, int value)
-	{		
+	public bool preesingVerticalAxis;
+	void OnJoystickAxisVerticalRelease(int playerID)
+	{
+		return;
 		if (playerID != id)
 			return;
-		if (state == states.IDLE || state == states.DEAD || state == states.CRASH || state == states.CHANGING_LANE)
-			return;
-		this.laneID += value;
-		if (laneID < 0) {
-			laneID = 0; 
-		} else if (laneID > 6) {
-			laneID = 6;
-		} else
-	 		ChangeLane ();
+		preesingVerticalAxis = false;
+
+		print (lanePos.y);
+		ForceToLanePosition ();
+	}
+	int laneValueMove;
+	void OnJoystickAxisVertical(int playerID, int laneValueMove)
+	{		
+//		if (playerID != id)
+//			return;
+//		if (state == states.IDLE || state == states.DEAD || state == states.CRASH || state == states.CHANGING_LANE)
+//			return;
+//		this.laneValueMove = laneValueMove;
+//		preesingVerticalAxis = true;
+//		this.laneID += laneValueMove;
+//		if (laneID < 0) {
+//			laneID = 0; 
+//		} else if (laneID > 6) {
+//			laneID = 6;
+//		} else
+//	 		ChangeLane ();
 	}
 	public void Run()
 	{
