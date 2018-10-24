@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Summary : MonoBehaviour {
 
+	public Text scoreField;
 	bool canClick;
 	void Start () {
 		Invoke ("Delayed", 1);
 		Events.OnButtonClicked += OnButtonClicked;
+		scoreField.text = "SCORE: " + Data.Instance.score;
 	}
 	void OnDestroy()
 	{

@@ -92,6 +92,15 @@ public class Character : MonoBehaviour {
 //			else if (pos.z < lanePos.z)
 //				pos.z += speedY;
 //		}
+		if (pos.y > 1.8f)
+		{
+			pos.y = 1.8f;
+			pos.z = 0;
+		} else if (pos.y < -4.3f)
+		{
+			pos.y = -4.3f;
+			pos.z = -6f;
+		}
 		transform.localPosition = pos;
 	}
 	public void StartRunning()
