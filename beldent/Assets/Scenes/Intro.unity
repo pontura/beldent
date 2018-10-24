@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -273,15 +273,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.86
+      value: -2.97
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.02
+      value: -2.4413
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.34
+      value: -0.40533
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalRotation.x
@@ -305,15 +305,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalScale.x
-      value: -2.6371918
+      value: -2.3828967
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalScale.y
-      value: 2.6371925
+      value: 2.3828971
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalScale.z
-      value: 2.6371925
+      value: 2.3828971
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08cd086835382e346ad0096d26809e28, type: 2}
@@ -428,14 +428,14 @@ RectTransform:
   m_GameObject: {fileID: 985841074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.36017138, y: 0.36017138, z: 0.36017138}
+  m_LocalScale: {x: 0.47931126, y: 0.47931126, z: 0.47931126}
   m_Children: []
   m_Father: {fileID: 1482610235}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335, y: -271}
+  m_AnchoredPosition: {x: 323.4, y: -273}
   m_SizeDelta: {x: 268, y: 66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &985841076
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.44705883}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8392157}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -504,8 +504,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6, y: -273.7}
-  m_SizeDelta: {x: 491.72, y: 30}
+  m_AnchoredPosition: {x: -38, y: -271}
+  m_SizeDelta: {x: 696.07, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179335589
 MonoBehaviour:
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.70661265, g: 0.745283, b: 0.7305382, a: 1}
+  m_Color: {r: 0.9803922, g: 0.86274517, b: 0.20392159, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -527,13 +527,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6296e2059195460438f13285206b0553, type: 3}
-    m_FontSize: 12
+    m_Font: {fileID: 12800000, guid: 6d27c0061b3876144a7387662bc8c525, type: 3}
+    m_FontSize: 8
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 40
-    m_Alignment: 4
+    m_MaxSize: 28
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -578,10 +578,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionMode: 1
-  resolution: {x: 200, y: 150}
-  pixelSize: 4
+  resolution: {x: 800, y: 600}
+  pixelSize: 1
   dither: 0
-  opacity: 1
+  opacity: 0.541
   colormap: {fileID: 11400000, guid: 30a8ec7f3ca3cfd478eff58fb3b47652, type: 2}
 --- !u!114 &1289911685
 MonoBehaviour:
@@ -939,15 +939,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.26
+      value: 2.6818
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.19
+      value: -2.7372
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.78999996
+      value: -0.78715
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalRotation.x
@@ -975,15 +975,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalScale.x
-      value: 3.0160325
+      value: 2.9159715
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalScale.y
-      value: 3.0160327
+      value: 2.9159718
       objectReference: {fileID: 0}
     - target: {fileID: 4378778961846546, guid: 08cd086835382e346ad0096d26809e28, type: 2}
       propertyPath: m_LocalScale.z
-      value: 3.0160327
+      value: 2.9159718
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08cd086835382e346ad0096d26809e28, type: 2}
