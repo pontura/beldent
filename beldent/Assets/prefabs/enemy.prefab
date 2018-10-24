@@ -98,8 +98,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!114 &114405337102557328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,6 +122,20 @@ MonoBehaviour:
   lanePos: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   state: 0
+  customizationData:
+    gorra: 
+    pelo: 
+    barba: 
+    remera: 
+    remeranotint: 
+    pantalon: 
+    pantalonnotint: 
+    color_pelos: {r: 0, g: 0, b: 0, a: 0}
+    color_remeras: {r: 0, g: 0, b: 0, a: 0}
+    color_piel: {r: 0, g: 0, b: 0, a: 0}
+    color_zapatos: {r: 0, g: 0, b: 0, a: 0}
+    color_gorras: {r: 0, g: 0, b: 0, a: 0}
+    color_pantalones: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114946338018545728
 MonoBehaviour:
   m_ObjectHideFlags: 1

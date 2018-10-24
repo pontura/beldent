@@ -12,13 +12,13 @@ public class FollowersManager : MonoBehaviour {
 	void Awake () {
 		lanes = GetComponent<Lanes> ();
 		Events.AddFollower += AddFollower;
-		Events.OnCharacterChangeLane += OnCharacterChangeLane;
+		//Events.OnCharacterChangeLane += OnCharacterChangeLane;
 		Events.OnGameStart += OnGameStart;
 		Events.OnAvatarCatched += OnAvatarCatched;
 	}
 	void OnDestroy () {
 		Events.AddFollower -= AddFollower;
-		Events.OnCharacterChangeLane -= OnCharacterChangeLane;
+		//Events.OnCharacterChangeLane -= OnCharacterChangeLane;
 		Events.OnGameStart -= OnGameStart;
 		Events.OnAvatarCatched -= OnAvatarCatched;
 	}
@@ -33,26 +33,33 @@ public class FollowersManager : MonoBehaviour {
 	{		
 		foreach (Enemy e in all)
 			e.StartRunning ();
+
+		Loop ();
 	}
-	void OnCharacterChangeLane(Character character, int laneID)
+	void Loop()
 	{
 		float dist;
 		foreach (Enemy e in all) {
-			if (e.characterToFollow == character)
-				StartCoroutine(e.ChangeLane (laneID) );
+			if(e.characterToFollow.state != Character.states.DEAD && e.characterToFollow.state != Character.states.CRASH)
+			StartCoroutine(e.ChangeLane () );
 		}
+		Invoke ("Loop", 0.75f);
 	}
 	void AddFollower(Character character)
 	{
 		Enemy newEnemy = Instantiate (enemy);
 		all.Add (newEnemy);
-		newEnemy.laneID = character.laneID;
+		//newEnemy.laneID = character.laneID;
 		newEnemy.distance = -offset;
-		newEnemy.InitCharacter (Data.Instance.customizer.GetRandomData(), character, character.laneID);
+		newEnemy.InitCharacter (Data.Instance.customizer.GetRandomData(), character, 0);
 
-		//si se agrega en medio de una corrida:
+		Vector3 pos = character.transform.localPosition;
+		pos.x = -offset;
+		newEnemy.transform.localPosition = pos;
+
+		print (pos);
 		if (BoardManager.Instance.state == BoardManager.states.ACTIVE)
-			newEnemy.Revive (newEnemy.laneID);
+			newEnemy.Revive (pos);
 	}
 	public void Move(float distance)
 	{
@@ -62,10 +69,11 @@ public class FollowersManager : MonoBehaviour {
 					Vector3 pos = e.transform.localPosition;
 					pos.x = distance - offset;
 					e.transform.localPosition = pos;
-					e.Revive (e.characterToFollow.laneID);
+					e.Revive (e.characterToFollow.transform.localPosition);
 				}
 			}
-			e.Move (distance - offset, Time.deltaTime * 0.15f);
+			if (e.characterToFollow.state != Character.states.DEAD && e.characterToFollow.state != Character.states.CRASH) 
+				e.Move (distance - offset, Time.deltaTime * 0.15f);
 		}
 	}
 }
