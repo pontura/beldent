@@ -72,7 +72,7 @@ public class FollowersManager : MonoBehaviour {
 					e.Revive (e.characterToFollow.transform.localPosition);
 				}
 			}
-			if (e.characterToFollow.state != Character.states.DEAD && e.characterToFollow.state != Character.states.CRASH) 
+			if (e.characterToFollow.state != Character.states.DEAD) 
 				e.Move (distance - offset, Time.deltaTime * 0.15f);
 		}
 	}

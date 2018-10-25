@@ -83,9 +83,9 @@ public class Customizer : MonoBehaviour {
 		}else{
 			data.pantalonnotint = GetRandomFromArray(pantalonnotint);
 		}
-		if (Random.Range (0, 10) < 5) {
+		if (Random.Range (0, 10) < 7) {
 			data.barba = "";
-		}else{
+		} else {
 			data.barba = GetRandomFromArray(barbas);
 		}
 		if (Random.Range (0, 10) < 5) {

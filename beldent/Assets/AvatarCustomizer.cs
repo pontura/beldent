@@ -32,8 +32,13 @@ public class AvatarCustomizer : MonoBehaviour {
 		else if (data.gorra == "")
 			gorraAsset.SetActive (false);
 
-		//
-		barbas[0].sprite = Resources.Load<Sprite>("clothes/img_barba_" +data.barba);
+		if (data.barba == "") {
+			barbas [0].gameObject.SetActive (false);
+		} else {
+			barbas [0].sprite = Resources.Load<Sprite> ("clothes/img_barba_" + data.barba);
+			barbas [0].gameObject.SetActive (true);
+		}
+
 		gorra[0].sprite = Resources.Load<Sprite>("clothes/img_gorra_" +data.gorra+ "_a");
 
 		pelos[0].sprite = Resources.Load<Sprite>("clothes/img_pelos_" +data.pelo+ "_b");
